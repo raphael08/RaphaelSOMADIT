@@ -30,18 +30,25 @@ the instance has 3 methods up to this stage
     nationality
 
 so to access any of that you have to call using an instance rex
+
+
 => rex.regno to obtain the registraction number
 
 HOW TO USE
 
 #import required library
+
+
 from RaphaelSomaDIT import rex
 
-#to obtain student details
-rex.studentInfo('<your valid Email>','<Your Valid Password>')
+#...............to obtain student details........................#
+
+rex.studentInfo('<<your valid Email>>','<<Your Valid Password>>')
+ 
+
 rex.name #this return full name of the student
 
 
-THANK YOU 
+THANK YOU 😎
 
      
