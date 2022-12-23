@@ -11,4 +11,6 @@ setuptools.setup(
  "License :: OSI Approved :: MIT License",
  "Operating System :: OS Independent",
  ],
+ url='https://github.com/raphael08/RaphaelSOMADIT.git'
+ zip_safe=False
 )
