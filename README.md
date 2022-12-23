@@ -18,16 +18,17 @@ the instance has 3 methods up to this stage
  => rex.photo
 
 2. the student information has 10 variables
-    regno 
-    gender
-    dob
-    email
-    mobile
-    martial_status
-    academic_year
-    NTA_level
-    name
-    nationality
+
+    >> regno 
+    >> gender
+    >> dob
+    >> email
+    >> mobile
+    >> martial_status
+    >> academic_year
+    >> NTA_level
+    >> name
+    >> nationality
 
 so to access any of that you have to call using an instance rex
 
