@@ -268,5 +268,3 @@ class raphael:
                 print('invalid status code') 
                 
 rex=raphael()
-rex.result('rsiphael@gmail.com','#Raphael1996')
-print(rex.total_result)
