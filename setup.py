@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 
 setup(
  name='RaphaelSomaDIT', 
- version='0.0.25',
+ version='0.0.3',
  author="Raphael Sifael Mkilya",
  author_email="rsiphael@gmail.com",
  description="A SOMA API for obtaining student information of DIT",

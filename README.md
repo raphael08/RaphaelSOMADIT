@@ -49,6 +49,15 @@ rex.studentInfo('<<your valid Email>>','<<Your Valid Password>>')
 
 rex.name #this return full name of the student
 
+v0.0.3
+RESULT DISPLAYING
+
+now you can access using the result method from the rex module
+ie rex.result('<<your valid Email>>','<<Your Valid Password>>')
+and you  can get the result in 3 modes
+rex.sem1 = for 1st semester
+rex.sem2 = for second semester
+rex.total_result = the all result 
 
 THANK YOU 😎
 
