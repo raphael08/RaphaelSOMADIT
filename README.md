@@ -49,7 +49,7 @@ rex.studentInfo('<<your valid Email>>','<<Your Valid Password>>')
 
 rex.name #this return full name of the student
 
-v0.0.3
+v0.0.4
 RESULT DISPLAYING
 
 now you can access using the result method from the rex module
