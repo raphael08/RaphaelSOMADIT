@@ -60,18 +60,31 @@ rex.sem2 = for second semester
 rex.total_result = the all result 
 
 v0.0.4
+
 BUgs fixed
 
 v0.0.5
+
 Performance Improved
 
 v0.0.6
+
 >GPA sem1 and sem 2 display
 >using variable
 -GPA_sem1
 -GPA_sem2
 -GPA_sem1_status
 -GPA_sem2_status
-THANK YOU 😎
+
+v0.0.7
+
+overall GPA and status updated
+
+use 
+-overall_GPA
+-overall_status
+
+
+######### THANK YOU 😎 ##################
 
      

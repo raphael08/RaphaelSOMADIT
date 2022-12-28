@@ -25,6 +25,7 @@ class raphael:
     GPA_sem1_status=''
     GPA_sem2_status=''
     overall_GPA=''
+    overall_status=''
     sem1_csv=''
     sem2_csv=''
     overall_sem_csv=''
@@ -43,6 +44,7 @@ class raphael:
         self.GPA_sem1_status=''
         self.GPA_sem2_status=''
         self.overall_GPA=''
+        self.overall_status=''
         
         try:
             login_url = 'https://soma.dit.ac.tz/login'
@@ -86,14 +88,23 @@ class raphael:
                 self.sem2 = pd.DataFrame(self.total_results[1])
                 
                 sem_pga = total_result.find_all('h6')
+                sem_pga_total = total_result.find_all('h5')
                 h6 = []
+                h5=[]
+                
                 for sem_pga in sem_pga:
                     h6.append(sem_pga.text.strip())
                     
-                self.GPA_sem1 = h6[2].split(':')[1][1:5]
-                self.GPA_sem1_status = (h6[2].split(':')[1][-4:])
-                self.GPA_sem2_status = h6[3].split(':')[1][-4:]
-                self.GPA_sem2 = h6[3].split(':')[1][1:5]
+                self.GPA_sem1 = h6[2].split(':')[1][1:5].strip()
+                self.GPA_sem1_status = (h6[2].split(':')[1][-4:].strip())
+                self.GPA_sem2_status = h6[3].split(':')[1][-4:].strip()
+                self.GPA_sem2 = h6[3].split(':')[1][1:5].strip()
+                
+                for sem in sem_pga_total:
+                    h5.append(sem.text.strip())
+                self.overall_GPA=(h5[0][-5:].strip())
+                self.overall_status = (h5[1][-5:].strip())
+                
                 #self.sem2.to_csv('matokeo_sem2.csv',index=False)
 
                 #sem1 = pd.read_csv('matokeo_sem1.csv')
@@ -219,9 +230,9 @@ class raphael:
 
     def studentImage(self,email,password):
         
-            self.regno
-            self.photo
-            
+        self.regno
+        self.photo
+        try:  
             login_url = 'https://soma.dit.ac.tz/login'
             secure_url = 'https://soma.dit.ac.tz/'
             session = requests.Session()
@@ -274,5 +285,7 @@ class raphael:
                 print('Login Failed: invalid credentials')
             else:
                 print('invalid status code') 
+        except:
+           print('no internet connection')
                 
 rex=raphael()
