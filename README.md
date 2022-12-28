@@ -64,6 +64,14 @@ BUgs fixed
 
 v0.0.5
 Performance Improved
+
+v0.0.6
+>GPA sem1 and sem 2 display
+>using variable
+-GPA_sem1
+-GPA_sem2
+-GPA_sem1_status
+-GPA_sem2_status
 THANK YOU 😎
 
      

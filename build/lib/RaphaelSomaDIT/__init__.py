@@ -19,9 +19,11 @@ class raphael:
     nationality = ''
     sem1=''
     sem2=''
-    total_result =''
+    total_results=''
     GPA_sem1=''
     GPA_sem2=''
+    GPA_sem1_status=''
+    GPA_sem2_status=''
     overall_GPA=''
     sem1_csv=''
     sem2_csv=''
@@ -32,10 +34,15 @@ class raphael:
     def result(self,email, password):
         self.sem1,
         self.sem2, 
-        self.total_result,
+        self.total_results,
         self.sem1_csv,
         self.sem2_csv, 
         self.overall_sem_csv,
+        self.GPA_sem1=''
+        self.GPA_sem2=''
+        self.GPA_sem1_status=''
+        self.GPA_sem2_status=''
+        self.overall_GPA=''
         
         try:
             login_url = 'https://soma.dit.ac.tz/login'
@@ -68,13 +75,25 @@ class raphael:
                 result_url = [l for l in links if '/student-semester-results' in l]
                 
                 result_url = (f'https://soma.dit.ac.tz{result_url[0]}')
-                self.total_result = session.get(result_url).text
-
-                self.total_result= pd.read_html(self.total_result)
-                self.sem1 = pd.DataFrame(self.total_result[0])
+                total_result = session.get(result_url).text
+                
+                self.total_results= pd.read_html(total_result)
+                
+                total_result = bs(total_result,'html.parser')
+                self.sem1 = pd.DataFrame(self.total_results[0])
                 #self.sem1.to_csv('matokeo_sem1.csv',index=False)
 
-                self.sem2 = pd.DataFrame(self.total_result[1])
+                self.sem2 = pd.DataFrame(self.total_results[1])
+                
+                sem_pga = total_result.find_all('h6')
+                h6 = []
+                for sem_pga in sem_pga:
+                    h6.append(sem_pga.text.strip())
+                    
+                self.GPA_sem1 = h6[2].split(':')[1][1:5]
+                self.GPA_sem1_status = (h6[2].split(':')[1][-4:])
+                self.GPA_sem2_status = h6[3].split(':')[1][-4:]
+                self.GPA_sem2 = h6[3].split(':')[1][1:5]
                 #self.sem2.to_csv('matokeo_sem2.csv',index=False)
 
                 #sem1 = pd.read_csv('matokeo_sem1.csv')
@@ -88,7 +107,7 @@ class raphael:
             else:
                 print('invalid status code') 
         except:
-            print('no enternet connection')
+            print('no internet connection')
 
 
     
@@ -149,16 +168,7 @@ class raphael:
                 
                 self.regno = soup.find(class_='text-muted text-center').find('strong').text.rstrip()
             
-
-                image =  soup.find(class_='profile-user-img img-fluid img-circle').get('src')
-
-                image_url = secure_url+image[1:]
-                image_response = session.get(image_url)
-
-                ##save the image
-                
-                #image = open(f"{regno}.jpg", "wb").write(image_response.content)
-
+            
                 info = soup.select('li.list-group-item')
 
                 content =  []
@@ -174,12 +184,7 @@ class raphael:
 
                 level = soup.select('p.text-muted')
                 level = level[-1].text.strip().replace("   "," ")
-            
-
-            
-            
-            
-            
+      
                 self.email = soup.find('input',{'name':'email'}).get('value')
                 self.mobile = soup.find('input',{'name':'phone_number'}).get('value')
                 self.martial_status = soup.find(id='marital_status_id').find('option',selected=True).text.strip()
@@ -202,6 +207,9 @@ class raphael:
                 modules = pd.read_html(module)[0]
                 modules = pd.DataFrame(modules)
                 self.NTA_level = (modules['Code'][0][5])
+                
+                
+                
             elif 'invalid' in p.text:
                 print('Login Failed: invalid credentials'+ str(p.status_code))
             else:
