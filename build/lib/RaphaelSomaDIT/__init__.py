@@ -29,6 +29,7 @@ class raphael:
     sem1_csv=''
     sem2_csv=''
     overall_sem_csv=''
+    error = ''
     
     
     
@@ -45,6 +46,7 @@ class raphael:
         self.GPA_sem2_status=''
         self.overall_GPA=''
         self.overall_status=''
+        
         
         try:
             login_url = 'https://soma.dit.ac.tz/login'
@@ -136,6 +138,7 @@ class raphael:
         self.academic_year
         self.NTA_level
         self.regno
+        self.error
         try:
             login_url = 'https://soma.dit.ac.tz/login'
             secure_url = 'https://soma.dit.ac.tz/'
@@ -222,16 +225,17 @@ class raphael:
                 
                 
             elif 'invalid' in p.text:
-                print('Login Failed: invalid credentials'+ str(p.status_code))
+               self.error = 'Login Failed: invalid credentials'
             else:
-                print('invalid status code') 
+                self.error = 'invalid status code' 
         except:
-            print('no enternet connection')
+            self.error = 'no internet connection'
 
     def studentImage(self,email,password):
         
         self.regno
         self.photo
+        self.error
         try:  
             login_url = 'https://soma.dit.ac.tz/login'
             secure_url = 'https://soma.dit.ac.tz/'
@@ -282,10 +286,10 @@ class raphael:
                 self.photo = open(f"{self.regno}.jpg", "wb").write(image_response.content)
             
             elif 'invalid' in p.text:
-                print('Login Failed: invalid credentials')
+               self.error = 'Login Failed: invalid credentials'
             else:
-                print('invalid status code') 
+                self.error = 'invalid status code' 
         except:
-           print('no internet connection')
+            self.error = 'no internet connection'
                 
 rex=raphael()
