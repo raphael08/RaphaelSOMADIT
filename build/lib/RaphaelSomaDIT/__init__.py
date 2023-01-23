@@ -30,6 +30,7 @@ class raphael:
     sem2_csv=''
     overall_sem_csv=''
     error = ''
+    level =""
     
     
     
@@ -46,6 +47,7 @@ class raphael:
         self.GPA_sem2_status=''
         self.overall_GPA=''
         self.overall_status=''
+       
         
         
         try:
@@ -139,6 +141,7 @@ class raphael:
         self.NTA_level
         self.regno
         self.error
+        self.level
         try:
             login_url = 'https://soma.dit.ac.tz/login'
             secure_url = 'https://soma.dit.ac.tz/'
@@ -197,7 +200,7 @@ class raphael:
             
 
                 level = soup.select('p.text-muted')
-                level = level[-1].text.strip().replace("   "," ")
+                self.level = level[-1].text.strip().replace("   "," ")
       
                 self.email = soup.find('input',{'name':'email'}).get('value')
                 self.mobile = soup.find('input',{'name':'phone_number'}).get('value')
@@ -293,3 +296,4 @@ class raphael:
             self.error = 'no internet connection'
                 
 rex=raphael()
+

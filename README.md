@@ -68,7 +68,10 @@ v0.0.5
 Performance Improved
 
 v0.0.6
-
+v0.0.8
+-bugs fixes
+v1.0 
+ -level fixed
 >GPA sem1 and sem 2 display
 >using variable
 -GPA_sem1
